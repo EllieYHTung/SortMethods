@@ -152,11 +152,23 @@ int binarySearch(int* _arr, int _value, int _size){
     }
     return -1;
 }
+int selection(int* _arr,int order,int _size){
+    quickSort(_arr,0,order);
+    for(int i=order;i<_size;i++){
+        if(_arr[i]<_arr[order-1]){
+            SSwap(&_arr[i], &_arr[order-1]);
+            quickSort(_arr,0,order);
+        }
+    }
+    return _arr[order-1];
+    
+}
 
 int main(int argc, const char * argv[]) {
     int arr[]={56,12,24,3,90,45,67,51,99,38,72,69,21,87,-7};
     int size=sizeof(arr)/sizeof(arr[0]);
-    
+    int order=selection(arr,8,size);
+    cout<< "The 8th big:"<<order<<endl;
 //    insertSort(arr, _size);
 //    bubbleSort(arr, size);
 //    selectionSort(arr, size);
