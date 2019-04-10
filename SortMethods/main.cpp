@@ -138,6 +138,20 @@ void heapSort(int* _arr, int _size){
     
 }
 
+int binarySearch(int* _arr, int _value, int _size){
+    int front=0, end=_size-1;
+    while(front<=end){
+        int mid=(front+end)/2;
+        if(_arr[mid]<_value){
+            front=mid+1;
+        }else  if(_arr[mid]>_value){
+            end=mid-1;
+        }else{
+            return mid;
+        }
+    }
+    return -1;
+}
 
 int main(int argc, const char * argv[]) {
     int arr[]={56,12,24,3,90,45,67,51,99,38,72,69,21,87,-7};
@@ -149,8 +163,13 @@ int main(int argc, const char * argv[]) {
 //    mergedSort(arr, 0, size-1);
 //    quickSort(arr, 0, size-1);
     heapSort(arr,size);
-    
     printArray(arr, size);
+    int key=binarySearch(arr, -7,size);
+    if(key>=0){
+        cout<<"found! Index:"<<key<<endl;
+    }else{
+        cout<<"not found"<<endl;
+    }
     
     return 0;
 }
